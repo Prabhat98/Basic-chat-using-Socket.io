@@ -18,14 +18,53 @@ $(function ()
     let messageList = $('#message-list')
     let messageBox = $('#message-box')
     let sendButton = $('#send-btn')
+    let loginBox = $('#login-box')
+    let loginButton = $('#login-btn')
+    let chatDiv = $('#chat-div')
+    let loginDiv = $('#login-div')
+    let heading = $('#heading')
+    let userName = ''
+
+    loginButton.click(function()
+    {
+        userName = loginBox.val();
+        loginDiv.hide();
+        chatDiv.show();
+        socket.emit('login',
+        {
+            user:userName
+        })
+    })
 
     sendButton.click(function()
     {
-        socket.emit('send_message',{message:messageBox.val()})
+        socket.emit('send_message',
+        {
+            user:userName,
+            message:messageBox.val()
+        })
+    })
+
+    messageBox.keypress(function()
+    {
+        socket.emit('typing',
+        {
+            user:userName
+        })
+    })
+
+    socket.on('header',function(data)
+    {
+        heading.append($('<h1 class = "display-4">' + "Write Something, " + data.user + '</h1>'))
+    })
+
+    socket.on('type',function(data)
+    {
+        messageList.append($('<h6 class = "font-italic">' + data.user + " is typing..." + '<h6>'))
     })
 
     socket.on('recv_message',function(data)
     {
-        messageList.append($('<h6>' + (data.message) + '</h6>'))
+        messageList.append($('<h5>' + (data.user) + ' : ' + (data.message) + '</h5>'))
     })
 })

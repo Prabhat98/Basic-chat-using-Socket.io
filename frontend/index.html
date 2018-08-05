@@ -9,37 +9,75 @@
     <script src = "/socket.io/socket.io.js"></script>
     <script src = "script.js"></script>
     <link href = "bootstrap.css" rel = "stylesheet">
+    <link rel = "stylesheet" href = "font-awesome-4.7.0/css/font-awesome.css">
 </head>
 <body>
-    <div class = "text-center text-muted bg-light py-5">
+    <div id = "login-div">
         <div class = "container">
-            <div class = "row">
+            <div class = "row text-center text-muted bg-light py-5">
                 <div class = "col">
-                    <h1 class = "display-4">Enter a Message</h1>
+                    <h1 class = "display-4">Log-In</h1>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col-lg-8">
+                    <form>
+                        <div class = "form-group">
+                            <div class = "input-group-prepend">
+                                <span class = "input-group-text">
+                                    <i class = "fa fa-user fa-2x"></i>
+                                </span>
+                                <input type = "text" class = "form-control" placeholder = "Your Username" id = "login-box">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class = "col-lg-4">
+                    <button class = "btn btn-info btn-block btn-lg" id = "login-btn">Login</button>
                 </div>
             </div>
         </div>
-    </div>    
-    <div class = "container">
-        <div class = "row">
-            <div class = "col-lg-8">
-                <form>
-                    <div class = "form-group">
-                        <input type = "text" class = "form-control" placeholder = "Type Here" id = "message-box">
+    </div>
+    <div id = "chat-div" style = "display:none">
+        <div class = "text-center text-muted bg-light py-5">
+            <div class = "container">
+                <div class = "row">
+                    <div class = "col" id = "heading">
+                        
                     </div>
-                </form>
+                </div>
             </div>
-            <div class = "col-lg-4">
-                <button class = "btn btn-info btn-block" id = "send-btn">Send</button>
+        </div>    
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-lg-8">
+                    <form>
+                        <div class = "form-group">
+                            <div class = "input-group-prepend">
+                                <span class = "input-group-text">
+                                    <i class = "fa fa-pencil fa-2x"></i>
+                                </span>
+                                <input type = "text" class = "form-control" placeholder = "Type Here" id = "message-box">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class = "col-lg-4">
+                    <button class = "btn btn-info btn-block btn-lg" id = "send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+        <div class = "container bg-dark text-light mt-5">
+            <div class = "row">
+                <div class = "col pt-1" id = "message-list">
+                                    
+                </div>
             </div>
         </div>
     </div>
-    <div class = "container bg-dark text-light mt-5">
-        <div class = "row">
-            <div class = "col" id = "message-list">
-                                
-            </div>
-        </div>
+    <div class = "chat-div" style = "display:none">
+        
     </div>
+    
 </body>
 </html>
