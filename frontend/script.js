@@ -23,6 +23,7 @@ $(function ()
     let chatDiv = $('#chat-div')
     let loginDiv = $('#login-div')
     let heading = $('#heading')
+    let feedback = $('#feedback')
     let userName = ''
 
     loginButton.click(function()
@@ -60,11 +61,13 @@ $(function ()
 
     socket.on('type',function(data)
     {
-        messageList.append($('<h6 class = "font-italic">' + data.user + " is typing..." + '<h6>'))
+        // html() sets or returns the content of selected element 
+        feedback.html($('<h6 class = "font-italic">' + data.user + " is typing..." + '</h6>'))
     })
 
     socket.on('recv_message',function(data)
     {
+        feedback.html($('<h6>' + " " +'</h6>'))
         messageList.append($('<h5>' + (data.user) + ' : ' + (data.message) + '</h5>'))
     })
 })

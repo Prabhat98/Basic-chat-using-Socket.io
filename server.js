@@ -26,6 +26,7 @@ io.on('connection',(socket) =>
     {
         // Here we will get the usernames and their socket IDs
         userSocket[data.user] = socket.id
+        // Sending the id for "typing message..."
         io.to(userSocket[data.user]).emit('header',data)
     })
 
@@ -58,10 +59,11 @@ io.on('connection',(socket) =>
     })
 })
 
-//1) fixing position 2) typing... phenomenon 3) remove @username from private message
-
-server.listen(4000,() =>
+server.listen(4000,'0.0.0.0',() =>
 {
     console.log("Server running at http://localhost:4000");
 })
+/* '0.0.0.0' signifies that other devices when on the same network can access this application
+    by computerip:portnumber
+ */
 
